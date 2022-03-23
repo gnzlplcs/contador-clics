@@ -1,31 +1,34 @@
-import Boton from './componentes/Boton';
-import Contador from './componentes/Contador';
-import './App.css';
-import freeCodeCampLogo from './imagenes/freecodecamp-logo.png';
+import { useState } from "react";
+import Boton from "./componentes/Boton";
+import Contador from "./componentes/Contador";
+import "./App.css";
+import freeCodeCampLogo from "./imagenes/freecodecamp-logo.png";
 
 function App() {
+  const [numClics, setNumClics] = useState(0);
+
   const manejarClic = () => {
-    console.log('Clic')
-  }
+    setNumClics(numClics + 1);
+  };
 
   const reiniciarContador = () => {
-    console.log('Reiniciar')
-  }
+    setNumClics(0);
+  };
 
   return (
     <div className="App">
       <div className="freecodecamp-logo-contenedor">
-        <img className="freecodecamp-logo" src={freeCodeCampLogo} alt="Logo de freeCodeCamp" />
+        <img
+          className="freecodecamp-logo"
+          src={freeCodeCampLogo}
+          alt="Logo de freeCodeCamp"
+        />
       </div>
       <div className="contenedor-principal">
-        <Contador numClics='5' />
+        <Contador numClics={numClics} />
+        <Boton texto="Clic" esBotonDeClic={true} manejarClic={manejarClic} />
         <Boton
-          texto='Clic'
-          esBotonDeClic={true}
-          manejarClic={manejarClic}
-        />
-        <Boton
-          texto='Reiniciar'
+          texto="Reiniciar"
           esBotonDeClic={false}
           manejarClic={reiniciarContador}
         />
